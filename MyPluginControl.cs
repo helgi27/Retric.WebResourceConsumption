@@ -306,7 +306,7 @@ namespace Retric.WebResourceConsumption
             return 3 * (characterCount / 4) - paddingCount;
         }
 
-        public string HelpUrl => "https://www.retric.is/WebResourceConsumption";
+        public string HelpUrl => "https://github.com/helgi27/Retric.WebResourceConsumption/wiki";
 
         #endregion
     }

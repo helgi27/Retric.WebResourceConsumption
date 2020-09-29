@@ -7,12 +7,12 @@
     <authors>Helgi Már Erlingsson/Retric ehf.</authors>
     <owners></owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <projectUrl>https://www.retric.is/WebResourceConsumption</projectUrl>
+    <projectUrl>https://github.com/helgi27/Retric.WebResourceConsumption/wiki</projectUrl>
     <iconUrl>https://www.retric.is/images/webresourceconsumption.png</iconUrl>
     <description>Find out which web resources take the most space.</description>
     <summary>Find out which web resources take the most space.</summary>
     <releaseNotes>
-      1.2020.9.4 Cleanup code
+      1.2020.9.4 Cleanup code and publish to github
       1.2020.9.3 Publish fix
       1.2020.9.2 Fixed title
       1.2020.9.1 Initial version loading all web resources to calculate their size.
