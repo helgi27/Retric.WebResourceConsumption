@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>WebResourceConsumption</id>
+    <version>1.2020.9.4</version>
+    <title>Web Resource Consumption</title>
+    <authors>Helgi Már Erlingsson/Retric ehf.</authors>
+    <owners></owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectUrl>https://www.retric.is/WebResourceConsumption</projectUrl>
+    <iconUrl>https://www.retric.is/images/webresourceconsumption.png</iconUrl>
+    <description>Find out which web resources take the most space.</description>
+    <summary>Find out which web resources take the most space.</summary>
+    <releaseNotes>
+      1.2020.9.4 Cleanup code
+      1.2020.9.3 Publish fix
+      1.2020.9.2 Fixed title
+      1.2020.9.1 Initial version loading all web resources to calculate their size.
+    </releaseNotes>
+    <copyright>Copyright 2020 Retric ehf.</copyright>
+    <tags>XrmToolBox Web Resource Consumption</tags>
+    <license type="expression">MIT</license>
+    <dependencies>
+      <dependency id="XrmToolBox" version="1.2020.6.40" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\Retric.WebResourceConsumption.dll" target="lib\net472\Plugins" />
+  </files>
+</package>
