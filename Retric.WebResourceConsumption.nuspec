@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>WebResourceConsumption</id>
-    <version>1.2020.9.4</version>
+    <version>1.2020.9.5</version>
     <title>Web Resource Consumption</title>
     <authors>Helgi Már Erlingsson/Retric ehf.</authors>
     <owners></owners>
@@ -12,6 +12,7 @@
     <description>Find out which web resources take the most space.</description>
     <summary>Find out which web resources take the most space.</summary>
     <releaseNotes>
+      1.2020.9.5 Column for size of web resource in DB added
       1.2020.9.4 Cleanup code and publish to github
       1.2020.9.3 Publish fix
       1.2020.9.2 Fixed title
