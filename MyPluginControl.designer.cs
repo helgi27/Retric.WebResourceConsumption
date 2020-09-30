@@ -134,7 +134,7 @@ namespace Retric.WebResourceConsumption
             // 
             this.labelInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelInfo.AutoSize = true;
-            this.labelInfo.Location = new System.Drawing.Point(1374, 10);
+            this.labelInfo.Location = new System.Drawing.Point(1174, 10);
             this.labelInfo.Name = "labelInfo";
             this.labelInfo.Size = new System.Drawing.Size(0, 29);
             this.labelInfo.TabIndex = 6;

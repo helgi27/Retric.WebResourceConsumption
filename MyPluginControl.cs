@@ -106,11 +106,11 @@ namespace Retric.WebResourceConsumption
                     var totalSize = 0;
                     if (args.Result is EntityCollection result)
                     {
-                        totalSize = ProcessResults(result, totalSize);
-
+                        totalSize = ProcessResults(result, totalSize, out var dbSize);
+                        
                         labelInfo.Text =
-                            $"Total webresources found: {_sData.TotalWebResources.Rows.Count} ({totalSize / 1024}MB)";
-                        _sData.TotalWebResources.DefaultView.Sort = "Size (KB) desc";
+                            $"Total webresources found: {_sData.TotalWebResources.Rows.Count} ({totalSize / 1024} MB on disk, { dbSize / 1024} MB in DB)";
+                        _sData.TotalWebResources.DefaultView.Sort = "Size on disk (KB) desc";
                         dataGridView1.DataSource = _sData.TotalWebResources;
                         dataGridView1.Columns[0].Visible = false;
                         dataGridView1.Columns[1].Width = 400;
@@ -127,23 +127,27 @@ namespace Retric.WebResourceConsumption
         /// </summary>
         /// <param name="result"></param>
         /// <param name="totalSize"></param>
+        /// <param name="totalDBSize"></param>
         /// <returns></returns>
-        private int ProcessResults(EntityCollection result, int totalSize)
+        private int ProcessResults(EntityCollection result, int totalSize, out int totalDBSize)
         {
+            totalDBSize = 0;
             //Going through all web resources to calculate size
             foreach (var item in result.Entities)
             {
                 var size = GetOriginalLengthInBytes(item.GetAttributeValue<string>("content"));
+                var dbsize = item.GetAttributeValue<string>("content").Length;
                 var solutionid = item.GetAttributeValue<Guid>("solutionid");
 
                 _sData.TotalWebResources.Rows.Add(item.Id.ToString(),
                     item.GetAttributeValue<string>("name"),
                     SolutionsData.WebTypes[item.GetAttributeValue<OptionSetValue>("webresourcetype").Value],
                     _sData.SolutionList[solutionid],
-                    item.GetAttributeValue<BooleanManagedProperty>("ishidden").Value, size / 1024);
+                    item.GetAttributeValue<BooleanManagedProperty>("ishidden").Value, dbsize/ 1024, size / 1024);
                 //Add to size as well
                 _sData.SolutionSizes[solutionid] += size / 1024; //(Megabytes)
                 totalSize += size / 1024; //(Megabytes)
+                totalDBSize += dbsize / 1024; //MB in DB storage
             }
 
             return totalSize;

@@ -44,7 +44,8 @@ namespace Retric.WebResourceConsumption.Helper
             TotalWebResources.Columns.Add("Type", typeof(string));
             TotalWebResources.Columns.Add("Solution", typeof(string));
             TotalWebResources.Columns.Add("Hidden?", typeof(string));
-            TotalWebResources.Columns.Add("Size (KB)", typeof(int));
+            TotalWebResources.Columns.Add("Size in DB (KB)", typeof(int));
+            TotalWebResources.Columns.Add("Size on disk (KB)", typeof(int));
         }
 
 
