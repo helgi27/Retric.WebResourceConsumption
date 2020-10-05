@@ -127,11 +127,13 @@ namespace Retric.WebResourceConsumption
         /// </summary>
         /// <param name="result"></param>
         /// <param name="totalSize"></param>
-        /// <param name="totalDBSize"></param>
+        /// <param name="totalDbSize"></param>
         /// <returns></returns>
-        private int ProcessResults(EntityCollection result, int totalSize, out int totalDBSize)
+        private int ProcessResults(EntityCollection result, int totalSize, out int totalDbSize)
         {
-            totalDBSize = 0;
+            totalDbSize = 0;
+            var hiddenSolutionName = "UNKNOWN/HIDDEN SOLUTION";
+            _sData.SolutionList.Add(Guid.Empty, hiddenSolutionName);
             //Going through all web resources to calculate size
             foreach (var item in result.Entities)
             {
@@ -139,15 +141,26 @@ namespace Retric.WebResourceConsumption
                 var dbsize = item.GetAttributeValue<string>("content").Length;
                 var solutionid = item.GetAttributeValue<Guid>("solutionid");
 
+                var solution = _sData.SolutionList.ContainsKey(solutionid) ? _sData.SolutionList[solutionid]: hiddenSolutionName;
+
                 _sData.TotalWebResources.Rows.Add(item.Id.ToString(),
                     item.GetAttributeValue<string>("name"),
                     SolutionsData.WebTypes[item.GetAttributeValue<OptionSetValue>("webresourcetype").Value],
-                    _sData.SolutionList[solutionid],
+                    solution,
                     item.GetAttributeValue<BooleanManagedProperty>("ishidden").Value, dbsize/ 1024, size / 1024);
                 //Add to size as well
-                _sData.SolutionSizes[solutionid] += size / 1024; //(Megabytes)
+                if (_sData.SolutionList.ContainsKey(solutionid))
+                {
+                    _sData.SolutionSizes[solutionid] += size / 1024; //(Megabytes)
+                }
+                else
+                {
+                    //Unknown solutions get its space calculation
+                    _sData.SolutionList[Guid.Empty] += size / 1024; //(Megabytes)
+                }
+
                 totalSize += size / 1024; //(Megabytes)
-                totalDBSize += dbsize / 1024; //MB in DB storage
+                totalDbSize += dbsize / 1024; //MB in DB storage
             }
 
             return totalSize;
